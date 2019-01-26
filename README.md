@@ -15,7 +15,7 @@ pip install -r requirements.txt
 Then you run with
 
 ```ssh
-python index.py
+python upload.py
 ```
 
 
