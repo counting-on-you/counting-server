@@ -18,5 +18,11 @@ Then you run with
 python upload.py
 ```
 
+To use the fake data generator
+
+```ssh
+python .\fake_data.py | python .\upload.py
+```
+
 
 
