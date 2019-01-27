@@ -4,6 +4,7 @@ import os
 import settings
 import time
 import json
+import random
 
 print('Initializing program')
 
@@ -14,11 +15,12 @@ STORAGE_BUCKET = os.getenv('STORAGE_BUCKET')
 DEVICE_ID = os.getenv('DEVICE_ID')
 
 config = {
-  'apiKey': API_KEY,
-  'authDomain': AUTH_DOMAIN,
-  'databaseURL': DATABASE_URL,
-  'storageBucket': STORAGE_BUCKET
+    'apiKey': API_KEY,
+    'authDomain': AUTH_DOMAIN,
+    'databaseURL': DATABASE_URL,
+    'storageBucket': STORAGE_BUCKET
 }
+
 
 def read_data(variable):
     print('Called read_data with variable: {}'.format(variable))
@@ -63,7 +65,17 @@ def read_data(variable):
     now = int(time.time())
     print(now)
     # Pass the user's idToken to the push method
-    results = db.child("data").child(DEVICE_ID).child(now).set(data)
+    names = ["EID20_IS",
+             "TEST_DEV_1",
+             "TEST_DEV_1_IS",
+             "TEST_DEV_2",
+             "TEST_DEV_3",
+             "TEST_DEV_HILLMAN",
+             "TEST_DEV_HILLMAN_FLOOR_1",
+             "TEST_DEV_SENNOTT"]
+    for name in names:
+        data = data[0:random.randint(1, len(data))]
+        results = db.child("data").child(name).child(now).set(data)
 
 
 firebase = pyrebase.initialize_app(config)
